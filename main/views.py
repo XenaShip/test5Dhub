@@ -10,10 +10,10 @@ class ShortenURLView(APIView):
         serializer = ShortURLSerializer(data=request.data)
         if serializer.is_valid():
             short_url = serializer.save()
-            print('OK. 201_CREATED')
+            #print('OK. 201_CREATED')
             return Response(ShortURLSerializer(short_url, context={'request': request}).data, status=status.HTTP_201_CREATED)
         else:
-            print('400_BAD_REQUEST')
+            #print('400_BAD_REQUEST')
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
