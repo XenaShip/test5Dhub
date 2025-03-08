@@ -5,7 +5,6 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import TransmittedURL
-from .serializers import ShortURLSerializer
 import uuid
 import httpx
 from .models import TransmittedURL
@@ -14,7 +13,7 @@ from .models import TransmittedURL
 @csrf_exempt
 def shorten_url(request):
     if request.method == 'POST':
-        long_url = request.POST.get('url')
+        long_url = request.POST.get('long_url')
         if not long_url:
             return JsonResponse({'error': 'URL is required'}, status=400)
         short_id = str(uuid.uuid4())[:8]
