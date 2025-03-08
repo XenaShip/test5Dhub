@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import ShortenURLView, RedirectView, async_func
+from .views import async_func, shorten_url, redirect_to_original
 
 urlpatterns = [
-    path('', ShortenURLView.as_view(), name='shorten_url'),
-    path('<str:short_id>/', RedirectView.as_view(), name='redirect'),
-    path('async/<str:service_name>/', async_func.as_view(), name='async_func'),
+    path('', shorten_url, name='shorten_url'),
+    path('<str:short_id>/', redirect_to_original, name='redirect'),
+    path('async/<str:service_name>/', async_func, name='async_func'),
 ]
